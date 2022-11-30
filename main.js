@@ -1,0 +1,21 @@
+
+const excelInput = document.getElementById("excel-input");
+const GenArr = []; // manipulable
+
+
+excelInput.addEventListener('change', async function(){
+    const content = await readXlsxFile(excelInput.files[0]);
+    for(let i=0; i < content.length; i++){
+        GenArr.push(content[i]);
+    };
+    
+    new gridjs.Grid({
+        columns: ["DATA1", "DATA2", "DATA3"],
+        data: GenArr
+      }).render(document.getElementById("wrapper"));
+      
+    console.log(GenArr);
+
+})
+
+
